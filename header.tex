@@ -27,7 +27,10 @@
 \usepackage[nottoc]{tocbibind}
 \usepackage{caption}
 \usepackage{coqtheorem}
+\usepackage[en-US]{datetime2}
 
+%the ordinal should be raised in date strings provided by datetime2
+\DTMlangsetup[en-US]{ord=raise}
 
 % For the font
 \usepackage[T1]{fontenc}
@@ -79,8 +82,9 @@
 \newcommand{\university}[1]{\def\theuniversity{#1}}
 \newcommand{\faculty}[1]{\def\thefaculty{#1}}
 \newcommand{\thesistype}[1]{\def\thethesistype{#1}}
-\newcommand{\subdate}[3]{\def\thesubday{#1} \def\thesubmonth{#2} \def\thesubyear{#3} }
 \newcommand{\city}[1]{\def\thecity{#1}}
+
+\newcommand{\thesubdatestr}{\DTMusedate{subdate}}
 
 \newcommand{\maketitlepage}{
   \begin{titlepage}
@@ -131,7 +135,7 @@
 
       \vfill
 
-      {\large Submitted: \thesubday\textsuperscript{th} \thesubmonth~\thesubyear}
+      {\large Submitted: \thesubdatestr{}}
 
     \end{center}
   \end{titlepage}
@@ -171,7 +175,7 @@ Computer Science Department.
 
 \vspace*{3cm}
 
-\thecity, \thesubday$^{\text{th}}$ \thesubmonth, \thesubyear
+\thecity, \thesubdatestr{}
 
 \newpage
 }
